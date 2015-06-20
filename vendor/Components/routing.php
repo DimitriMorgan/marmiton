@@ -1,10 +1,11 @@
 <?php
 namespace Vendor\Components;
 
+use App\Controllers;
 
-class Routing
+class Router
 {
-    const NAMESPACE_CONTROLLERS = 'App\Config\Controllers\\';
+    const NAMESPACE_CONTROLLERS = 'App\Controllers\\';
     const CONTROLLER_PATH = '/../../app/Controllers';
 
     const METHOD_END_PATH = 'Action';
@@ -67,22 +68,24 @@ class Routing
     {
         $route['controller'] = ucfirst($route['controller']);
 
-        $controller =  self::NAMESPACE_CONTROLLERS . $route['controller'];
+        $controller =  self::NAMESPACE_CONTROLLERS . $route['controller'] . self::CONTROLLER_END_PATH;
 
         if (!array_key_exists('method', $route)) {
             throw new \Exception('No controller set to this route');
         }
 
-        //TODO Fix controller instancing
-
         if (empty($route['method']) || $route['method'] == 'index') {
 
             $indexMethodName = 'index' . self::METHOD_END_PATH;
-            if (!method_exists($controller, 'index' . self::METHOD_END_PATH)) {
+
+            $this->loadController($route['controller']);
+
+            $controller = new $controller;
+            if (!method_exists($controller, $indexMethodName)) {
                 throw new \Exception('No index action found in this class, are you sure you already created it ?');
             }
 
-            $route['controller']->$indexMethodName;
+            return $controller->$indexMethodName();
         }
 
         if (!method_exists($route['method'], $route['method'])) {
@@ -90,6 +93,11 @@ class Routing
             throw new \Exception('No index action found in this class, are you sure you already created it ?');
         }
 
-        $controller->$route['method'];
+        return $controller->$route['method'];
+    }
+
+    private function loadController($controller)
+    {
+        include_once(__DIR__ . self::CONTROLLER_PATH . '/' . $controller . self::CONTROLLER_END_PATH . ".php");
     }
 }
