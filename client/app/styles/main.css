@@ -5,8 +5,8 @@ body {
 
 .navbar-inverse, .navbar-inverse .navbar-toggle {
     position: relative;
-    background-color: #4D7298;
-    border-color: #4D7298;
+    background-color: #333;
+    border-color: #333;
 }
 
 .navbar-inverse a {
@@ -14,18 +14,18 @@ body {
 }
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-    background-color: #91AEC1;
+    background-color: #d5d5d6;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
     background-color: white;
-    color: #4D7298 !important;
+    color: #333 !important;
     font-weight: bold;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-    border-color: #91AEC1;
+    border-color: #d5d5d6;
 }
 
 .monsterLogo  {
@@ -41,7 +41,7 @@ figure.widePic {
     text-align: center;
     overflow: hidden;
     /*background: url("http://photos.epicurious.com/2015/01/07/54adbe006529d92b2c049927_19-Beets.jpg") center center no-repeat scroll;*/
-    background: url("http://photos.epicurious.com/2015/01/07/54adbb5219925f464b3ba429_28-Cheese.jpg") center center no-repeat scroll;
+    background: url("../../assets/images/header-cheese.jpg") center center no-repeat scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -108,13 +108,20 @@ figure.widePic section.searchSection form input {
     height: 22px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 330px) {
     /*figure img {*/
         /*left: 50%;*/
         /*-ms-transform: translate(-50%, 0);*/
         /*-webkit-transform: translate(-50%, 0);*/
         /*transform: translate(-50%, 0);*/
     /*}*/
+
+    figure.widePic section.searchSection form fieldset button {
+        display: none;
+    }
+
+
+
 }
 
 figure.widePic section.mostSection .btn-group button{
@@ -135,4 +142,59 @@ figure.widePic section.mostSection .btn-group button:hover {
     background-color: white;
     font-weight: bold;
 
+}
+
+
+/* Containers of articles */
+
+.body-container {
+
+}
+
+.body-container .article-container {
+    margin-top: 40px;
+}
+
+.body-container .article-container div {
+    /*background-color: #d5d5d6;*/
+    /*width: 180px;*/
+    /*margin: 20px;*/
+}
+
+.body-container .article-container article {
+    margin: 10px;
+    padding: 10px;
+    background-color: #F7F7F7;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+}
+.body-container .article-container article figure {
+    text-align: center;
+    margin: 0 1% 1% 1%;
+}
+.body-container .article-container article figure img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.body-container .article-container article section div {
+    padding: 2%;
+}
+.body-container .article-container article section div.article-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 15px;
+    padding-bottom: 0;
+}
+.body-container .article-container article section hr {
+    margin: 0;
+    width: 100%;
+    height: 2px;
+    color: #000;
+}
+.body-container .article-container article section div.article-tags {
+}
+.body-container .article-container article section div.article-description {
+    word-break: break-all;
 }

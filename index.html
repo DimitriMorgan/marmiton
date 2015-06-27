@@ -18,6 +18,7 @@
 
     <!-- AngularJS custom codes -->
     <script src="client/app.js"></script>
+    <script src="client/app/controllers/homeCtrl.js"></script>
     <script src="client/app/controllers/searchCtrl.js"></script>
     <!--<script src="client/app/controllers/prodCtrl.js"></script>-->
     <!--<script src="client/app/controllers/todoList.js"></script>-->
@@ -78,7 +79,33 @@
         </figure>
     </header>
 
-    <div class="container" ng-controller="root">
+    <div class="body-container" ng-controller="HomeCtrl">
+
+        <div class="article-container col-md-12">
+
+
+            <div class="col-md-3" ng-repeat="recipe in recipes">
+                <article>
+                    <figure>
+                        <img src="{{recipe.picURL}}" alt="{{recipe.name}}">
+                    </figure>
+                    <section>
+                        <div class="article-title">
+                            {{recipe.name}}
+                        </div>
+                        <hr />
+                        <div class="article-tags">
+                            {{recipe.tags}}
+                        </div>
+                        <div class="article-description">
+                            {{recipe.description}}
+                        </div>
+                    </section>
+                </article>
+            </div>
+
+        </div>
+
     </div>
 
 
