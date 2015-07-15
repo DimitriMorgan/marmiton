@@ -1,0 +1,200 @@
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.navbar-inverse, .navbar-inverse .navbar-toggle {
+    position: relative;
+    background-color: #333;
+    border-color: #333;
+}
+
+.navbar-inverse a {
+    color: white !important;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #d5d5d6;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    background-color: white;
+    color: #333 !important;
+    font-weight: bold;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #d5d5d6;
+}
+
+.monsterLogo  {
+    height: 35px;
+    position: relative;
+    top: 6px;
+    float: left;
+}
+
+figure.widePic {
+    /*width: 100%;*/
+    height: 410px;
+    text-align: center;
+    overflow: hidden;
+    /*background: url("http://photos.epicurious.com/2015/01/07/54adbe006529d92b2c049927_19-Beets.jpg") center center no-repeat scroll;*/
+    background: url("../../assets/images/header-cheese.jpg") center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+
+
+/*figure.widePic form {*/
+    /*position: relative;*/
+    /*top: 60%;*/
+
+/*}*/
+
+
+figure.widePic section.searchSection h2 {
+    position: relative;
+    font-weight: bold;
+    margin-top: 150px;
+    letter-spacing: 1px;
+}
+
+figure.widePic section.searchSection form fieldset {
+    padding: 0;
+    margin: 0 auto;
+    width: 35rem;
+    border: none;
+}
+
+figure.widePic section.searchSection form fieldset input {
+    float: left;
+    width: 26.25rem;
+    height: 4rem;
+    border: none;
+    background: rgba(255,255,255,0.75);
+    padding-left: 1.125rem;
+    font: normal 2rem "Helvetica";
+    letter-spacing: normal;
+    color: #333;
+    margin: 0 auto;
+}
+figure.widePic section.searchSection form fieldset button {
+    width: 4rem;
+    height: 4rem;
+    background-color: #333;
+    border: none;
+    float: left;
+    color: #ffffff;
+    font-size: 20px;
+}
+figure.widePic section.searchSection form fieldset button div {
+    width: 20px;  height: 19px;
+    margin: 0 auto;
+}
+
+
+figure.widePic section.searchSection form input {
+    border: 0;
+    border-right: 1px solid #d5d5d6;
+    font-size: 15px;
+    line-height: 20px;
+    margin: 9px 12px;
+    width: 90%;
+    height: 22px;
+}
+
+@media only screen and (max-width: 330px) {
+    /*figure img {*/
+        /*left: 50%;*/
+        /*-ms-transform: translate(-50%, 0);*/
+        /*-webkit-transform: translate(-50%, 0);*/
+        /*transform: translate(-50%, 0);*/
+    /*}*/
+
+    figure.widePic section.searchSection form fieldset button {
+        display: none;
+    }
+
+
+
+}
+
+figure.widePic section.mostSection .btn-group button{
+    margin-top: 80px;
+    background-color: #333;
+    border: none;
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-size: 15px;
+    border-radius: 0 !important;
+    padding: 10px;
+    font-weight: bold;
+
+}
+
+figure.widePic section.mostSection .btn-group button:hover {
+    color: #333;
+    background-color: white;
+    font-weight: bold;
+
+}
+
+
+/* Containers of articles */
+
+.body-container {
+
+}
+
+.body-container .article-container {
+    margin-top: 40px;
+}
+
+.body-container .article-container div {
+    /*background-color: #d5d5d6;*/
+    /*width: 180px;*/
+    /*margin: 20px;*/
+}
+
+.body-container .article-container article {
+    margin: 10px;
+    padding: 10px;
+    background-color: #F7F7F7;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+}
+.body-container .article-container article figure {
+    text-align: center;
+    margin: 0 1% 1% 1%;
+}
+.body-container .article-container article figure img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.body-container .article-container article section div {
+    padding: 2%;
+}
+.body-container .article-container article section div.article-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 15px;
+    padding-bottom: 0;
+}
+.body-container .article-container article section hr {
+    margin: 0;
+    width: 100%;
+    height: 2px;
+    color: #000;
+}
+.body-container .article-container article section div.article-tags {
+}
+.body-container .article-container article section div.article-description {
+    word-break: break-all;
+}
