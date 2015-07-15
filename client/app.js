@@ -1,6 +1,6 @@
 'use strict';
 
-var App = angular.module('MarmitonApp', ['ngRoute']);
+var App = angular.module('MarmitonApp', ['ngRoute', "com.2fdevs.videogular", "youtube-embed"]);
 
 App.config(['$routeProvider',
     function($routeProvider) {

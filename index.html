@@ -2,19 +2,26 @@
 <html ng-app="MarmitonApp">
 <head>
     <title> Marmiton </title>
+    <meta charset="utf-8"/>
     <meta name="Description" content="Recipe Manager App created with AngularJS and PHP">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="client/app/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="client/app/styles/profile.css" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" href="client/assets/images/monsterChef_favicon.ico">
 
     <!-- Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <!--<script src="http://static.videogular.com/scripts/videogular/latest/videogular.js"></script>-->
+    <script src="bower_components/videogular/videogular.min.js"></script>
+    <!--<script src="client/assets/youtube_iframe_api.js"></script>-->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- AngularJS custom codes -->
     <script src="client/app.js"></script>
@@ -57,9 +64,6 @@
     </nav>
 
     <div ng-view></div>
-
-
-
 
 </body>
 </html>

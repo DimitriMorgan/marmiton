@@ -1,0 +1,40 @@
+{
+  "name": "marmiton",
+  "version": "0.0.0",
+  "homepage": "https://github.com/DimitriMorgan/marmiton",
+  "authors": [
+    "Michelle Chua <chua_m@etna-alternance.net>",
+    "Dimitri Fruit <fruit_d@etna-alternance.net>"
+  ],
+  "description": "A group project in ETNA where the students have to create a Recipe site like marmiton.org",
+  "main": "index.html",
+  "keywords": [
+    "AngularJS",
+    "PHP",
+    "Recipes",
+    "Marmiton"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.2",
+    "angular-route": "~1.4.2",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.3.0",
+    "angular-sanitize": "~1.4.2",
+    "videogular": "~1.2.4",
+    "angular-youtube-mb": "~1.0.2"
+  },
+  "resolutions": {
+    "angular": "~1.4.2",
+    "angular-sanitize": "~1.4.2"
+  }
+}

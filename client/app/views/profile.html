@@ -1,4 +1,38 @@
-<header> First content </header>
-<p ng-repeat="item in list">
-    {{item}}
-</p>
+
+<div id="recipePage" class="col-md-12">
+    <header>
+        <h1> {{ recipe.name }} </h1>
+    </header>
+
+    <div class="col-md-4">
+        <article class="pic-desc">
+            <figure>
+                <img ng-src="{{recipe.picURL}}" alt="{{recipe.name}}">
+            </figure>
+            <section>
+                {{recipe.description}}
+            </section>
+        </article>
+    </div>
+
+    <div class="col-md-4">
+        <!--{{ recipeMap.step[0].visual_src }} qsd-->
+        <!--<videogular vg-theme="videoDefaultSettings.theme">-->
+            <!--<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">-->
+            <!--</vg-media>-->
+        <!--</videogular>-->
+
+        <!--<youtube-video video-id="recipeMap.step[0].youtubeID"></youtube-video>-->
+        <youtube-video video-url="recipeMap.step[2].visual_src"></youtube-video>
+    </div>
+
+
+    <div class="col-md-4">
+
+    </div>
+
+    <!--<p ng-repeat="item in list">-->
+        <!--{{item}}-->
+    <!--</p>-->
+
+</div>
