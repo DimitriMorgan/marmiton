@@ -7,7 +7,7 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', function($scope, $route
         id: $routeParams.recipeId,
         tags: "tagss",
         name: "Sleepy omelet bear",
-        picURL: "client/assets/images/food-art2.jpg",
+        picture_src: "client/assets/images/food-art2.jpg",
         description: "Haec igitur prima lex amicitiae sanciatur, ut ab amicis honesta petamus, amicorum causa honesta faciamus, ne exspectemus quidem, dum rogemur; studium semper adsit, cunctatio absit; consilium vero dare audeamus libere. Plurimum in amicitia amicorum bene suadentium valeat auctoritas, eaque et adhibeatur ad monendum non modo aperte sed etiam acriter, si res postulabit, et adhibitae pareatur."
     };
 
@@ -32,6 +32,7 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', function($scope, $route
             picture_recipe_id: $routeParams.recipeId,
             picture_name: "brioche_burger_buns",
             picture_src: "client/assets/recipes/brioche_burger_buns/BurgerBuns_4up.jpg"
+            //picture_src: "client/assets/images/food-art2.jpg"
         },
         recipe_tag: [
             {
