@@ -1,21 +1,42 @@
 
 <div id="recipePage" class="col-md-12">
     <header>
-        <h1> {{ recipe.name }} </h1>
+        <h1> {{ recipeMap.title }} </h1>
     </header>
 
     <div class="col-md-4">
         <article class="pic-desc">
             <figure>
-                <img ng-src="{{recipe.picURL}}" alt="{{recipe.name}}">
+                <img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">
             </figure>
             <section>
-                {{recipe.description}}
+                {{recipeMap.description}}
             </section>
         </article>
+
+        <section class="stepBlocks">
+            <article>
+                <div class="col-md-3">
+                    <i class="fa fa-leanpub"></i>
+                </div>
+                <div class="col-md-9">
+                    <h2> KITCHEN MODE </h2>
+                </div>
+            </article>
+            <article ng-repeat="step in recipeMap.step | orderBy: 'order'">
+                <div class="col-md-3">
+                  {{step.order}}
+                </div>
+                <div class="col-md-9">
+                    <h5> <b> {{step.step_title}} </b> </h5>
+                    <p> {{step.description}} </p>
+                </div>
+            </article>
+        </section>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 stepBlocks">
+        <div>
         <!--{{ recipeMap.step[0].visual_src }} qsd-->
         <!--<videogular vg-theme="videoDefaultSettings.theme">-->
             <!--<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">-->
@@ -23,12 +44,72 @@
         <!--</videogular>-->
 
         <!--<youtube-video video-id="recipeMap.step[0].youtubeID"></youtube-video>-->
-        <youtube-video video-url="recipeMap.step[2].visual_src"></youtube-video>
+        <!--<youtube-video video-url="recipeMap.step[2].visual_src"></youtube-video>-->
+        </div>
+        <article>
+            <div class="col-md-3 logoText">
+                <h4> DISH TYPE </h4>
+            </div>
+            <div class="col-md-9">
+                <h2> {{ recipeMap.dish_type }} </h2>
+            </div>
+        </article>
+
+        <article>
+            <div class="col-md-3" style="padding-top: 20px; letter-spacing: 1px">
+                <h4> AUTHOR </h4>
+            </div>
+            <div class="col-md-9">
+                <h2> {{ recipeMap.author }} </h2>
+            </div>
+        </article>
+        <article>
+            <div class="col-md-3 logoText">
+                <h4> POSTED ON </h4>
+            </div>
+            <div class="col-md-9">
+                <h2> {{ recipeMap.created_at }} </h2>
+            </div>
+        </article>
+        <article class="article-list">
+            <div class="col-md-3">
+                <h2> INGREDIENTS </h2>
+            </div>
+            <div>
+                <div class="col-md-9">
+                    <table class="table">
+                        <!--<thead> -->
+                            <!--<tr> -->
+                                <!--<th>  </th> -->
+                            <!--</tr>  -->
+                        <!--</thead>-->
+                        <tbody>
+                            <tr ng-repeat="ing in recipeMap.recipe_ingredient_quantity">
+                                <td style="border-top: none !important;"> {{ ing.ingredient.name }} : </td>
+                                <td style="border-top: none !important;"> {{ ing.amount }} {{ ing.quantity_unit.type }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="clear: both"></p>
+                <!--<div ng-repeat="ing in recipeMap.recipe_ingredient_quantity">-->
+                    <!--{{ ing.ingredient.name }} : ing.amount {{  }}-->
+                <!--</div>-->
+                </div>
+            </div>
+        </article>
+        <p style="clear: both"></p>
     </div>
 
 
     <div class="col-md-4">
-
+        <article ng-repeat="step in recipeMap.step" style="height: 60px">
+            <div class="col-md-5" style="background-color: #a0fff0;">
+                qqsdqsdqs
+            </div>
+            <div class="col-md-5" style="background-color: #8dff7f">
+                qqsdqsdqs
+            </div>
+        </article>
     </div>
 
     <!--<p ng-repeat="item in list">-->
