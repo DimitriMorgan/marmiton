@@ -361,21 +361,21 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', function($sc
                 comment_id: Math.random().toString(16).slice(2, 8),
                 comment_recipe_id: $routeParams.recipeId,
                 comment_message: "Miam miam !",
-                comment_author: "",
+                comment_author: "Heisenberg",
                 rating: 2
             },
             {
                 comment_id: Math.random().toString(16).slice(2, 8),
                 comment_recipe_id: $routeParams.recipeId,
                 comment_message: "Miam miam !",
-                comment_author: "fruit_d",
+                comment_author: "Heisenberg",
                 rating: 5
             },
             {
                 comment_id: Math.random().toString(16).slice(2, 8),
                 comment_recipe_id: $routeParams.recipeId,
                 comment_message: "Miam miam !",
-                comment_author: "fruit_d",
+                comment_author: "Heisenberg",
                 rating: 2
             }
         ]
