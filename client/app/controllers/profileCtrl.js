@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('ProfileCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', function($scope, $routeParams, $filter) {
 
     // Get selected recipe by id
     $scope.recipe = {
@@ -16,17 +16,31 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', function($scope, $route
         theme: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
     };
 
+    $scope.kitchenMode = true;
+
+    $scope.toggleMode = function() {
+        $scope.kitchenMode = !$scope.kitchenMode;
+    };
+
+    function totalRating(comments) {
+        var sumFive = 5 * $filter('filter')(comments, {rating: 5}).length,
+            sumFour = 4 * $filter('filter')(comments, {rating: 4}).length,
+            sumThree = 3 * $filter('filter')(comments, {rating: 3}).length,
+            sumTwo = 2 * $filter('filter')(comments, {rating: 2}).length,
+            sumOne = 1 * $filter('filter')(comments, {rating: 1}).length;
+
+        $scope.recipeMap.avgRating = Math.round((sumFive + sumFour + sumThree + sumTwo + sumOne)/comments.length);
+    }
+
     $scope.recipeMap = {
         id: $routeParams.recipeId,
         author: "chuana_m",
         author_mail: "chuana_m@etna-alternance.net",
         title: "Brioche Burger Buns",
         dish_type: "Burgers",
-        created_at: Date.now(),
+        created_at: moment().format("MMM Do YY"),
         updated_at: Date.now(),
-        description: "We'd like to meet the guy who first decided to put a big, juicy burger patty between two slices of brioche. It's a multicultural marriage made in culinary heaven: the French are responsible for the rich, eggy bread, and the Americans (with a little help from 19th-century German immigrants) lay claim to the ground-beef patty. If that's not international diplomacy, we don't know what is." +
-                        "But while French babies are rumored to start cranking out unimpeachable brioche at birth, the rest of us can run into trouble. There's dry, stodgy brioche, cloyingly sweet brioche, and—perhaps the worst offender when it comes to burger building—the dreaded butter bomb. So what's the secret to the gorgeous, golden-brown buns that grace so many restaurant menus these days? Most chefs and bakers will evangelize their own formulas, and for good reason: different approaches work well for different reasons. We designed this simple, universal formula to yield a great result at home." +
-                        "Follow the instructions below and you'll wind up with a bun that's rich in flavor, moist, and eggy, while also durable enough to hold up to a juicy burger. As they teach the babies in France to say: Bon appétit.",
+        rating: 2,
         picture: {
             picture_id: Math.random().toString(16).slice(2, 8),
             picture_recipe_id: $routeParams.recipeId,
@@ -35,6 +49,46 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', function($scope, $route
             //picture_src: "client/assets/images/food-art2.jpg"
         },
         recipe_tag: [
+            {
+                recipe_tag_id: $routeParams.recipeId,
+                tag: {
+                    tag_id: Math.random().toString(16).slice(2, 8),
+                    tag_recipe_id: $routeParams.recipeId,
+                    tag_name: "Easy"
+                }
+            },
+            {
+                recipe_tag_id: $routeParams.recipeId,
+                tag: {
+                    tag_id: Math.random().toString(16).slice(2, 8),
+                    tag_recipe_id: $routeParams.recipeId,
+                    tag_name: "Easy"
+                }
+            },
+            {
+                recipe_tag_id: $routeParams.recipeId,
+                tag: {
+                    tag_id: Math.random().toString(16).slice(2, 8),
+                    tag_recipe_id: $routeParams.recipeId,
+                    tag_name: "Easy"
+                }
+            },
+            {
+                recipe_tag_id: $routeParams.recipeId,
+                tag: {
+                    tag_id: Math.random().toString(16).slice(2, 8),
+                    tag_recipe_id: $routeParams.recipeId,
+                    tag_name: "Easy"
+                }
+            },
+            {
+                recipe_tag_id: $routeParams.recipeId,
+                tag: {
+                    tag_id: Math.random().toString(16).slice(2, 8),
+                    tag_recipe_id: $routeParams.recipeId,
+                    tag_name: "Easy"
+                }
+            },
             {
                 recipe_tag_id: $routeParams.recipeId,
                 tag: {
@@ -302,16 +356,31 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', function($scope, $route
                 description: "Do it."
             }
         ],
-        comment: [
+        comments: [
+            {
+                comment_id: Math.random().toString(16).slice(2, 8),
+                comment_recipe_id: $routeParams.recipeId,
+                comment_message: "Miam miam !",
+                comment_author: "",
+                rating: 2
+            },
             {
                 comment_id: Math.random().toString(16).slice(2, 8),
                 comment_recipe_id: $routeParams.recipeId,
                 comment_message: "Miam miam !",
                 comment_author: "fruit_d",
                 rating: 5
+            },
+            {
+                comment_id: Math.random().toString(16).slice(2, 8),
+                comment_recipe_id: $routeParams.recipeId,
+                comment_message: "Miam miam !",
+                comment_author: "fruit_d",
+                rating: 2
             }
         ]
+    };
+    totalRating($scope.recipeMap.comments);
 
-    }
 
 }]);

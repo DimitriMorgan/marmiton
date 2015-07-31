@@ -201,3 +201,13 @@ figure.widePic section.mostSection .btn-group button:hover {
     color: #333;
     text-decoration: none;
 }
+
+hr.commentsBorder {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #333333, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #333333, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #333333, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #333333, #f0f0f0);
+}
+
