@@ -16,7 +16,7 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', function($sc
         theme: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
     };
 
-    $scope.kitchenMode = true;
+    $scope.kitchenMode = false;
 
     $scope.toggleMode = function() {
         $scope.kitchenMode = !$scope.kitchenMode;
