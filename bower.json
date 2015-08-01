@@ -32,7 +32,8 @@
     "angular-sanitize": "~1.4.2",
     "videogular": "~1.2.4",
     "angular-youtube-mb": "~1.0.2",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "angular-animate": "~1.4.3"
   },
   "resolutions": {
     "angular": "~1.4.2",
