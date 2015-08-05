@@ -33,7 +33,9 @@
     "videogular": "~1.2.4",
     "angular-youtube-mb": "~1.0.2",
     "moment": "~2.10.6",
-    "angular-animate": "~1.4.3"
+    "angular-animate": "~1.4.3",
+    "angular-touch": "~1.4.3",
+    "jquery-2.1.0.min": "http://code.jquery.com/jquery-2.1.0.min.js"
   },
   "resolutions": {
     "angular": "~1.4.2",
