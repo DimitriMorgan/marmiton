@@ -20,7 +20,7 @@ App.config(['$routeProvider',
             controller: 'ProfileCtrl'
           })
           .when('/sliderPage', {
-            templateUrl: 'client/app/views/slider.html',
+            templateUrl: 'client/app/views/sliderImage.html',
             controller: 'SliderCtrl'
           })
           .otherwise({

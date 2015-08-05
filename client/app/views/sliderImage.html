@@ -1,0 +1,16 @@
+<div class="container slider col-md-12">
+    <img ng-repeat="slide in pictures" class="slide slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.visual_src}}" alt="{{step_title}}">
+    <button class="arrow prev" ng-click="nextSlide()"></button>
+    <button class="arrow next" ng-click="prevSlide()"></button>
+    <nav class="nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in slides">
+                    <a href="#/recipe/{{recipeid}}" ng-class="{'active':isCurrentSlideIndex($index)}"
+                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -44,7 +44,7 @@ App.controller('SliderCtrl', ['$scope', function($scope) {
 					if(scope.direction !== 'right') {
 						finishPoint = -finishPoint;
 					}
-					TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+					TweenMax.to(element, 0.1, {left: finishPoint, onComplete: done });
 				}
 				else {
 					done();

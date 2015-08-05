@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', function($scope, $routeParams, $filter) {
+App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', '$http', function($scope, $routeParams, $filter, $http) {
 
     // Get selected recipe by id
     $scope.recipe = {
@@ -382,5 +382,71 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', function($sc
     };
     totalRating($scope.recipeMap.comments);
 
+    $scope.slides = $filter('filter')($scope.recipeMap.steps, {visual_type: "pic"});
+}])
+  .directive('customImageSlider', function () {
+    return {
+        templateUrl: 'client/app/views/sliderImage.html',
+        restrict: 'EA',
+        scope: {
+            pictures: "=?",
+            recipeid: "@"
+        },
+        transclude: true,
+        link: function (scope, element, attrs, ctrl, transclude) {
+            console.log("recipe id:", scope.recipeid);
+            scope.direction = 'left';
+            scope.currentIndex = 0;
 
-}]);
+            scope.setCurrentSlideIndex = function (index) {
+                scope.direction = (index > scope.currentIndex) ? 'left' : 'right';
+                scope.currentIndex = index;
+            };
+
+            scope.isCurrentSlideIndex = function (index) {
+                return scope.currentIndex === index;
+            };
+
+            scope.prevSlide = function () {
+                scope.currentIndex = (scope.currentIndex < scope.pictures.length - 1) ? ++scope.currentIndex : 0;
+            };
+
+            scope.nextSlide = function () {
+                scope.currentIndex = (scope.currentIndex > 0) ? --scope.currentIndex : scope.slides.length - 1;
+            };
+        }
+    }
+  })
+  .directive('customTemplateSlider', function () {
+      return {
+          templateUrl: 'client/app/views/sliderTemplate.html',
+          restrict: 'EA',
+          scope: {
+              steps: "=?",
+              recipeid: "@"
+          },
+          transclude: true,
+          link: function (scope, element, attrs, ctrl, transclude) {
+              scope.direction = 'left';
+              scope.currentIndex = 0;
+
+              scope.setCurrentSlideIndex = function (index) {
+                  scope.direction = (index > scope.currentIndex) ? 'left' : 'right';
+                  scope.currentIndex = index;
+              };
+
+              scope.isCurrentSlideIndex = function (index) {
+                  return scope.currentIndex === index;
+              };
+
+              scope.prevSlide = function () {
+                  scope.currentIndex = (scope.currentIndex < scope.steps.length - 1) ? ++scope.currentIndex : 0;
+              };
+
+              scope.nextSlide = function () {
+                  scope.currentIndex = (scope.currentIndex > 0) ? --scope.currentIndex : scope.slides.length - 1;
+              };
+          }
+      }
+  })
+;

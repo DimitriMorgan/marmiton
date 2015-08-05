@@ -1,6 +1,7 @@
 
 body {
     font-family: 'Roboto', sans-serif !important;
+    height: 100%;
 }
 
 .navbar-inverse, .navbar-inverse .navbar-toggle {
