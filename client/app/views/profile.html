@@ -1,4 +1,255 @@
-<header> First content </header>
-<p ng-repeat="item in list">
-    {{item}}
-</p>
+<div id="recipePage" class="col-md-12">
+    <header>
+        <h1> {{ recipeMap.title }} </h1>
+        <h5> posted by {{ recipeMap.author }} on {{ recipeMap.created_at }}</h5>
+        <div class="star-rating" star-rating rating-value="recipeMap.avgRating" update="1"
+             data-max="5" on-rating-selected="rateFunction(rating)" style="cursor: default">
+        </div>
+    </header>
+
+    <div class="col-md-10 col-md-offset-1">
+
+        <div class="row">
+            <div class="col-md-8 genInfo">
+                <article class="row pic">
+                    <img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">
+                </article>
+                <section class="col-md-6" style="padding : 0">
+                    <article class="row test-color sideTitle">
+                        <div class="col-md-3 logoText">
+                            <h4> DISH TYPE </h4>
+                        </div>
+                        <div class="col-md-8" style="padding: 6px;">
+                            <h3 style="    position: relative; bottom: 7px;"> {{ recipeMap.dish_type }} </h3>
+                        </div>
+                    </article>
+                </section>
+                <section class="col-md-6" style="padding : 0">
+                    <article class="row test-color sideTitle">
+                        <div class="col-md-3 logoText">
+                            <!--<h4 style="padding-top: 12px"> TAGS </h4>-->
+                            <h4> TAGS </h4>
+                        </div>
+                        <div class="col-md-8" style="padding: 6px;">
+                            <span ng-repeat="entry in recipeMap.recipe_tag" class="recipeTag">
+                                {{ entry.tag.tag_name }}
+                            </span>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <div class="col-md-4">
+                <article class="article-list">
+                    <header class="row text-center">
+                        <h3> INGREDIENTS </h3>
+                    </header>
+                    <section class="row">
+                        <table class="table">
+                            <tbody>
+                            <tr ng-repeat="ing in recipeMap.recipe_ingredient_quantity">
+                                <td style="border-top: none !important;"> {{ ing.ingredient.name }} : </td>
+                                <td style="border-top: none !important;"> {{ ing.amount }} {{ ing.quantity_unit.type }} </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </article>
+                <article class="article-list">
+                    <header class="row text-center">
+                        <h3> Bed Time Stories </h3>
+                    </header>
+                    <section class="row text-center" style="cursor: pointer;" ng-click="toggleMode()">
+                        <h4>
+                            <i class="fa fa-bed fa-5x"></i>
+                        </h4>
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="row" ng-if="kitchenMode" style="padding: 15px">
+
+            <div class="col-md-4">
+                <article class="row test-color sideTitle">
+                    <div class="col-md-3 logoText">
+                        <h4> STEP </h4>
+                    </div>
+                    <div class="col-md-9">
+                        <h3> {{ recipeMap.step[0].step_title }} </h3>
+                    </div>
+                </article>
+                <article class="article-list">
+                    <header class="row text-center">
+                        <h3> DESCRIPTIONS </h3>
+                    </header>
+                    <section class="row" style="padding: 10px 40px">
+                        {{ recipeMap.step[0].description }}
+                    </section>
+                </article>
+                <!--<article class="article-list">-->
+                    <!--<header class="row text-center">-->
+                        <!--<h3> Bed Time Stories </h3>-->
+                    <!--</header>-->
+                    <!--<section class="row text-center" style="cursor: pointer;" ng-click="toggleMode()">-->
+                        <!--<h4>-->
+                            <!--<i class="fa fa-bed fa-5x"></i>-->
+                        <!--</h4>-->
+                    <!--</section>-->
+                <!--</article>-->
+            </div>
+
+            <div class="col-md-8">
+                <youtube-video video-url="recipeMap.step[0].visual_src"></youtube-video>
+
+                <!--<article class="row pic">-->
+                    <!--<videogular vg-theme="videoDefaultSettings.theme">-->
+                    <!--<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">-->
+                    <!--</vg-media>-->
+                    <!--</videogular>-->
+
+                    <!--<youtube-video video-id="recipeMap.step[2].visual_src"></youtube-video>-->
+
+                    <!--<img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">-->
+                <!--</article>-->
+                <!--<section class="col-md-6" style="padding : 0">-->
+                    <!--<article class="row test-color sideTitle">-->
+                        <!--<div class="col-md-3 logoText">-->
+                            <!--<h4> DISH TYPE </h4>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<h3> {{ recipeMap.dish_type }} </h3>-->
+                        <!--</div>-->
+                    <!--</article>-->
+                <!--</section>-->
+            </div>
+
+
+        </div>
+
+        <hr class="commentsBorder"/>
+
+        <div class="row comments">
+            <article class="row" ng-repeat="entry in recipeMap.comments">
+                <figure class="usrPic col-md-1"  ng-class-odd="'floatLeft'" ng-class-even="'floatRight'">
+                    <img src="http://media.makeameme.org/created/Cooking.jpg" alt=""/>
+                </figure>
+                <div class="col-md-10" ng-class-even="'text-right floatRight'">
+                    <b>{{ entry.comment_author }} : </b><br />
+                    {{ entry.comment_message }}
+                </div>
+            </article>
+        </div>
+
+
+        <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+            <!--<article class="pic-desc">-->
+                <!--<figure>-->
+                    <!--<img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">-->
+                <!--</figure>-->
+                <!--<section>-->
+                    <!--{{recipeMap.description}}-->
+                <!--</section>-->
+            <!--</article>-->
+
+            <!--<section class="stepBlocks">-->
+                <!--<article>-->
+                    <!--<div class="col-md-3">-->
+                        <!--<i class="fa fa-leanpub"></i>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<h2> KITCHEN MODE </h2>-->
+                    <!--</div>-->
+                <!--</article>-->
+                <!--<article ng-repeat="step in recipeMap.step | orderBy: 'order'">-->
+                    <!--<div class="col-md-3">-->
+                      <!--{{step.order}}-->
+                    <!--</div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<h5> <b> {{step.step_title}} </b> </h5>-->
+                        <!--<p> {{step.description}} </p>-->
+                    <!--</div>-->
+                <!--</article>-->
+            <!--</section>-->
+        <!--</div>-->
+
+        <!--<div class="col-md-4 stepBlocks">-->
+            <!--<div>-->
+            <!--&lt;!&ndash;{{ recipeMap.step[0].visual_src }} qsd&ndash;&gt;-->
+            <!--&lt;!&ndash;<videogular vg-theme="videoDefaultSettings.theme">&ndash;&gt;-->
+                <!--&lt;!&ndash;<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">&ndash;&gt;-->
+                <!--&lt;!&ndash;</vg-media>&ndash;&gt;-->
+            <!--&lt;!&ndash;</videogular>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<youtube-video video-id="recipeMap.step[0].youtubeID"></youtube-video>&ndash;&gt;-->
+            <!--&lt;!&ndash;<youtube-video video-url="recipeMap.step[2].visual_src"></youtube-video>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<article>-->
+                <!--<div class="col-md-3 logoText">-->
+                    <!--<h4> DISH TYPE </h4>-->
+                <!--</div>-->
+                <!--<div class="col-md-9">-->
+                    <!--<h2> {{ recipeMap.dish_type }} </h2>-->
+                <!--</div>-->
+            <!--</article>-->
+
+            <!--<article>-->
+                <!--<div class="col-md-3" style="padding-top: 20px; letter-spacing: 1px">-->
+                    <!--<h4> AUTHOR </h4>-->
+                <!--</div>-->
+                <!--<div class="col-md-9">-->
+                    <!--<h2> {{ recipeMap.author }} </h2>-->
+                <!--</div>-->
+            <!--</article>-->
+            <!--<article>-->
+                <!--<div class="col-md-3 logoText">-->
+                    <!--<h4> POSTED ON </h4>-->
+                <!--</div>-->
+                <!--<div class="col-md-9">-->
+                    <!--<h2> {{ recipeMap.created_at }} </h2>-->
+                <!--</div>-->
+            <!--</article>-->
+            <!--<article class="article-list">-->
+                <!--<div class="col-md-3">-->
+                    <!--<h2> INGREDIENTS </h2>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<table class="table">-->
+                            <!--&lt;!&ndash;<thead> &ndash;&gt;-->
+                                <!--&lt;!&ndash;<tr> &ndash;&gt;-->
+                                    <!--&lt;!&ndash;<th>  </th> &ndash;&gt;-->
+                                <!--&lt;!&ndash;</tr>  &ndash;&gt;-->
+                            <!--&lt;!&ndash;</thead>&ndash;&gt;-->
+                            <!--<tbody>-->
+                                <!--<tr ng-repeat="ing in recipeMap.recipe_ingredient_quantity">-->
+                                    <!--<td style="border-top: none !important;"> {{ ing.ingredient.name }} : </td>-->
+                                    <!--<td style="border-top: none !important;"> {{ ing.amount }} {{ ing.quantity_unit.type }} </td>-->
+                                <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                        <!--<p style="clear: both"></p>-->
+                    <!--&lt;!&ndash;<div ng-repeat="ing in recipeMap.recipe_ingredient_quantity">&ndash;&gt;-->
+                        <!--&lt;!&ndash;{{ ing.ingredient.name }} : ing.amount {{  }}&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</article>-->
+            <!--<p style="clear: both"></p>-->
+        <!--</div>-->
+
+        <!--<div class="col-md-4">-->
+            <!--<article ng-repeat="step in recipeMap.step" style="height: 60px">-->
+                <!--<div class="col-md-5" style="background-color: #a0fff0;">-->
+                    <!--qqsdqsdqs-->
+                <!--</div>-->
+                <!--<div class="col-md-5" style="background-color: #8dff7f">-->
+                    <!--qqsdqsdqs-->
+                <!--</div>-->
+            <!--</article>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    </div>
+</div>
