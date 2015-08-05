@@ -216,7 +216,7 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', function($sc
                 }
             }
         ],
-        step: [
+        steps: [
             {
                 step_id: Math.random().toString(16).slice(2, 8),
                 step_recipe_id: $routeParams.recipeId,

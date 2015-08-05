@@ -69,60 +69,62 @@
         </div>
 
         <div class="row" ng-if="kitchenMode" style="padding: 15px">
+            <section ng-repeat="entry in recipeMap.steps" ng-animate="'animate'">
 
-            <div class="col-md-4">
-                <article class="row test-color sideTitle">
-                    <div class="col-md-3 logoText">
-                        <h4> STEP </h4>
-                    </div>
-                    <div class="col-md-9">
-                        <h3> {{ recipeMap.step[0].step_title }} </h3>
-                    </div>
-                </article>
-                <article class="article-list">
-                    <header class="row text-center">
-                        <h3> DESCRIPTIONS </h3>
-                    </header>
-                    <section class="row" style="padding: 10px 40px">
-                        {{ recipeMap.step[0].description }}
-                    </section>
-                </article>
-                <!--<article class="article-list">-->
-                    <!--<header class="row text-center">-->
-                        <!--<h3> Bed Time Stories </h3>-->
-                    <!--</header>-->
-                    <!--<section class="row text-center" style="cursor: pointer;" ng-click="toggleMode()">-->
-                        <!--<h4>-->
-                            <!--<i class="fa fa-bed fa-5x"></i>-->
-                        <!--</h4>-->
-                    <!--</section>-->
-                <!--</article>-->
-            </div>
-
-            <div class="col-md-8">
-                <youtube-video video-url="recipeMap.step[0].visual_src"></youtube-video>
-
-                <!--<article class="row pic">-->
-                    <!--<videogular vg-theme="videoDefaultSettings.theme">-->
-                    <!--<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">-->
-                    <!--</vg-media>-->
-                    <!--</videogular>-->
-
-                    <!--<youtube-video video-id="recipeMap.step[2].visual_src"></youtube-video>-->
-
-                    <!--<img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">-->
-                <!--</article>-->
-                <!--<section class="col-md-6" style="padding : 0">-->
-                    <!--<article class="row test-color sideTitle">-->
-                        <!--<div class="col-md-3 logoText">-->
-                            <!--<h4> DISH TYPE </h4>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-9">-->
-                            <!--<h3> {{ recipeMap.dish_type }} </h3>-->
-                        <!--</div>-->
+                <div class="col-md-4">
+                    <article class="row test-color sideTitle">
+                        <div class="col-md-3 logoText">
+                            <h4> STEP </h4>
+                        </div>
+                        <div class="col-md-9">
+                            <h3> {{ entry.step_title }} </h3>
+                        </div>
+                    </article>
+                    <article class="article-list">
+                        <header class="row text-center">
+                            <h3> DESCRIPTIONS </h3>
+                        </header>
+                        <section class="row" style="padding: 10px 40px">
+                            {{ entry.description }}
+                        </section>
+                    </article>
+                    <!--<article class="article-list">-->
+                        <!--<header class="row text-center">-->
+                            <!--<h3> Bed Time Stories </h3>-->
+                        <!--</header>-->
+                        <!--<section class="row text-center" style="cursor: pointer;" ng-click="toggleMode()">-->
+                            <!--<h4>-->
+                                <!--<i class="fa fa-bed fa-5x"></i>-->
+                            <!--</h4>-->
+                        <!--</section>-->
                     <!--</article>-->
-                <!--</section>-->
-            </div>
+                </div>
+
+                <div class="col-md-8">
+                    <youtube-video ng-if="entry.visual_type=='vid'" video-url="entry.visual_src"></youtube-video>
+
+                    <!--<article class="row pic">-->
+                        <!--<videogular vg-theme="videoDefaultSettings.theme">-->
+                        <!--<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">-->
+                        <!--</vg-media>-->
+                        <!--</videogular>-->
+
+                        <!--<youtube-video video-id="recipeMap.step[2].visual_src"></youtube-video>-->
+
+                        <!--<img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">-->
+                    <!--</article>-->
+                    <!--<section class="col-md-6" style="padding : 0">-->
+                        <!--<article class="row test-color sideTitle">-->
+                            <!--<div class="col-md-3 logoText">-->
+                                <!--<h4> DISH TYPE </h4>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-9">-->
+                                <!--<h3> {{ recipeMap.dish_type }} </h3>-->
+                            <!--</div>-->
+                        <!--</article>-->
+                    <!--</section>-->
+                </div>
+            </section>
 
 
         </div>
