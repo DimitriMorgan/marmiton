@@ -1,4 +1,4 @@
-<div id="recipePage" class="col-md-12">
+<div id="recipePage" class="col-md-12" style="height: 100%; min-height: 100%">
     <header>
         <h1> {{ recipeMap.title }} </h1>
         <h5> posted by {{ recipeMap.author }} on {{ recipeMap.created_at }}</h5>
@@ -7,12 +7,12 @@
         </div>
     </header>
 
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1" style="height: 100%; min-height: 100%">
 
         <div class="row">
             <div class="col-md-8 genInfo">
                 <article class="row pic">
-                    <img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">
+                    <custom-image-slider pictures="slides" recipeid="{{recipeMap.id}}"></custom-image-slider>
                 </article>
                 <section class="col-md-6" style="padding : 0">
                     <article class="row test-color sideTitle">
@@ -20,7 +20,7 @@
                             <h4> DISH TYPE </h4>
                         </div>
                         <div class="col-md-8" style="padding: 6px;">
-                            <h3 style="    position: relative; bottom: 7px;"> {{ recipeMap.dish_type }} </h3>
+                            <h3 style="position: relative; bottom: 7px;"> {{ recipeMap.dish_type }} </h3>
                         </div>
                     </article>
                 </section>
@@ -68,63 +68,64 @@
             </div>
         </div>
 
-        <div class="row" ng-if="kitchenMode" style="padding: 15px">
-            <section ng-repeat="entry in recipeMap.steps" ng-animate="'animate'">
+        <div class="row" ng-if="kitchenMode" style="padding: 15px; min-height: 100%">
+            <custom-template-slider steps="recipeMap.steps" recipeid="{{recipeMap.id}}"></custom-template-slider>
+            <!--<section ng-repeat="entry in recipeMap.steps" ng-animate="'animate'">-->
 
-                <div class="col-md-4">
-                    <article class="row test-color sideTitle">
-                        <div class="col-md-3 logoText">
-                            <h4> STEP </h4>
-                        </div>
-                        <div class="col-md-9">
-                            <h3> {{ entry.step_title }} </h3>
-                        </div>
-                    </article>
-                    <article class="article-list">
-                        <header class="row text-center">
-                            <h3> DESCRIPTIONS </h3>
-                        </header>
-                        <section class="row" style="padding: 10px 40px">
-                            {{ entry.description }}
-                        </section>
-                    </article>
+                <!--<div class="col-md-4">-->
+                    <!--<article class="row test-color sideTitle">-->
+                        <!--<div class="col-md-3 logoText">-->
+                            <!--<h4> STEP </h4>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<h3> {{ entry.step_title }} </h3>-->
+                        <!--</div>-->
+                    <!--</article>-->
                     <!--<article class="article-list">-->
                         <!--<header class="row text-center">-->
-                            <!--<h3> Bed Time Stories </h3>-->
+                            <!--<h3> DESCRIPTIONS </h3>-->
                         <!--</header>-->
-                        <!--<section class="row text-center" style="cursor: pointer;" ng-click="toggleMode()">-->
-                            <!--<h4>-->
-                                <!--<i class="fa fa-bed fa-5x"></i>-->
-                            <!--</h4>-->
+                        <!--<section class="row" style="padding: 10px 40px">-->
+                            <!--{{ entry.description }}-->
                         <!--</section>-->
                     <!--</article>-->
-                </div>
+                    <!--&lt;!&ndash;<article class="article-list">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<header class="row text-center">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h3> Bed Time Stories </h3>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</header>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<section class="row text-center" style="cursor: pointer;" ng-click="toggleMode()">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h4>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<i class="fa fa-bed fa-5x"></i>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</h4>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</section>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</article>&ndash;&gt;-->
+                <!--</div>-->
 
-                <div class="col-md-8">
-                    <youtube-video ng-if="entry.visual_type=='vid'" video-url="entry.visual_src"></youtube-video>
+                <!--<div class="col-md-8">-->
+                    <!--<youtube-video ng-if="entry.visual_type=='vid'" video-url="entry.visual_src"></youtube-video>-->
 
-                    <!--<article class="row pic">-->
-                        <!--<videogular vg-theme="videoDefaultSettings.theme">-->
-                        <!--<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">-->
-                        <!--</vg-media>-->
-                        <!--</videogular>-->
+                    <!--&lt;!&ndash;<article class="row pic">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<videogular vg-theme="videoDefaultSettings.theme">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<vg-media vg-src="recipeMap.step[2].sources" vg-native-controls="true">&ndash;&gt;-->
+                        <!--&lt;!&ndash;</vg-media>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</videogular>&ndash;&gt;-->
 
-                        <!--<youtube-video video-id="recipeMap.step[2].visual_src"></youtube-video>-->
+                        <!--&lt;!&ndash;<youtube-video video-id="recipeMap.step[2].visual_src"></youtube-video>&ndash;&gt;-->
 
-                        <!--<img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">-->
-                    <!--</article>-->
-                    <!--<section class="col-md-6" style="padding : 0">-->
-                        <!--<article class="row test-color sideTitle">-->
-                            <!--<div class="col-md-3 logoText">-->
-                                <!--<h4> DISH TYPE </h4>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-9">-->
-                                <!--<h3> {{ recipeMap.dish_type }} </h3>-->
-                            <!--</div>-->
-                        <!--</article>-->
-                    <!--</section>-->
-                </div>
-            </section>
+                        <!--&lt;!&ndash;<img ng-src="{{recipeMap.picture.picture_src}}" alt="{{recipeMap.picture.picture_name}}">&ndash;&gt;-->
+                    <!--&lt;!&ndash;</article>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<section class="col-md-6" style="padding : 0">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<article class="row test-color sideTitle">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="col-md-3 logoText">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<h4> DISH TYPE </h4>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="col-md-9">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<h3> {{ recipeMap.dish_type }} </h3>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</article>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</section>&ndash;&gt;-->
+                <!--</div>-->
+            <!--</section>-->
 
 
         </div>
