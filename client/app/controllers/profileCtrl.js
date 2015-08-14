@@ -104,6 +104,14 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', '$http', fun
                     tag_recipe_id: $routeParams.recipeId,
                     tag_name: "Baking"
                 }
+            },
+            {
+                recipe_tag_id: $routeParams.recipeId,
+                tag: {
+                    tag_id: Math.random().toString(16).slice(2, 8),
+                    tag_recipe_id: $routeParams.recipeId,
+                    tag_name: "Baking"
+                }
             }
         ],
         recipe_ingredient_quantity: [
@@ -362,7 +370,7 @@ App.controller('ProfileCtrl', ['$scope', '$routeParams', '$filter', '$http', fun
                 comment_recipe_id: $routeParams.recipeId,
                 comment_message: "Miam miam !",
                 comment_author: "Heisenberg",
-                rating: 2
+                rating: 5
             },
             {
                 comment_id: Math.random().toString(16).slice(2, 8),
