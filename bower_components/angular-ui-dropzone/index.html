@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DROPZONE</title>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.col {
+			float: left;
+			height: 100%;
+			width: 33%;
+		}
+
+		div[dropzone] {
+			background-color: rgba(108, 216, 125, 0.5);
+			border-right: 1px solid #333;
+			height: 100%;
+		}
+
+		div[droppable] {
+			background-color: rgba(123, 178, 241, 0.5);
+			border-top: 1px solid white;
+			height: 200px;
+			position: relative;
+			transition: transform 100ms ease;
+		}
+
+		.dropzone-displaced {
+			transform: translate3d(0,20px,0);
+		}
+	</style>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="src/dropzone.js"></script>
+	<script src="test/app.js"></script>
+</head>
+<body ng-app="DropzoneTest" ng-controller="DropzoneTestCtrl">
+	<div class="col" ng-repeat="col in columns" ng-model="col" dropzone>
+		<div ng-repeat="item in col" droppable>
+			<h4>{{item.name}}</h4>
+		</div>
+	</div>
+</body>
+</html>

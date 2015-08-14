@@ -5,7 +5,8 @@ var App = angular.module('MarmitonApp', [
     "com.2fdevs.videogular",
     "youtube-embed",
     "ngAnimate",
-    "ngTouch"
+    "ngTouch",
+    "ngFileUpload"
 ]);
 
 App.config(['$routeProvider',
@@ -18,6 +19,14 @@ App.config(['$routeProvider',
           .when('/recipe/:recipeId', {
             templateUrl: 'client/app/views/profile.html',
             controller: 'ProfileCtrl'
+          })
+          .when('/newRecipe', {
+            templateUrl: 'client/app/views/newRecipe.html',
+            controller: 'NewRecipeCtrl'
+          })
+          .when('/myCtrl', {
+            templateUrl: 'client/app/views/myCtrl.html',
+            controller: 'MyCtrl'
           })
           .when('/sliderPage', {
             templateUrl: 'client/app/views/sliderImage.html',

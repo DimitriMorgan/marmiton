@@ -1,0 +1,83 @@
+
+<div id="newRecipe" class="col-md-offset-2 col-md-8" style="height: 100%; min-height: 100%">
+    <article class="fullHeight">
+        <form class="fullHeight" style="padding: 2% 3% 1%;" novalidate>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="authorName">Pseudo:</label>
+                    <input type="text" class="form-control" placeholder="MonsterChef" ng-model="form.authorName" id="authorName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="authorEmail">Email:</label>
+                    <input type="email" class="form-control" placeholder="monster.chef@luto.com" ng-model="form.authorEmail" id="authorEmail">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="title">Recipe Name:</label>
+                    <input type="text" class="form-control" placeholder="Brioche Burger Buns" ng-model="form.title" id="title">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dishType">Recipe Dish Type:</label>
+                    <input type="text" class="form-control" ng-model="form.dishType" placeholder="Burgers" id="dishType">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Recipe Tags:</label>
+                    <div class="input-group">
+                        <!-- TODO: Add a scope to handle an array for the tags -->
+                        <input type="text" placeholder="Easy, Baking, Powder" ng-model="starters.tag" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-black" ng-click="addTags()" type="submit">Add Tag</button>
+                        </span>
+                    </div>
+                    <div class=" row">
+                        <section class="inside-div">
+                            <span class="btn-black tag-div" ng-repeat="tag in form.tags track by $index">{{ tag }}</span>
+                        </section>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="col-md-12" style="padding: 0 !important">
+                        <label >Recipe Ingredients:</label>
+                        <div class="input-group">
+                            <input type="text" ng-model="starters.ing_name" class="form-control" placeholder="Ingredient name">
+                            <span class="input-group-btn" style="width:0px;"></span>
+                            <input type="number" class="form-control" ng-model="starters.ing_amount" placeholder="Amount" style="margin-left:-1px" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown"> {{ starters.units }}  <span class="caret"></span></button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li ng-repeat="unit in units" ng-click="selectMeasureUnit(unit.name)"><a>{{unit.name}}</a></li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div class=" row">
+                            <section class="inside-div">
+                                <table class="table">
+                                    <tbody>
+                                    <tr ng-repeat="ing in form.ingredients">
+                                        <td style="border-top: none !important;"> {{ ing.name }} : </td>
+                                        <td style="border-top: none !important;"> {{ ing.amount }} {{ ing.unit }} </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p style="clear: both"></p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" ng-repeat="col in columns" ng-model="columns[$index]" dropzone>
+                    <div ng-repeat="item in col" droppable>
+                        <h4>{{item.name}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" style="float: right; margin-right: 1%;" class="btn btn-black">Post</button>
+            </div>
+        </form>
+    </article>
+</div>

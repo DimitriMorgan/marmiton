@@ -1,0 +1,24 @@
+{
+  "name": "angular-ui-dropzone",
+  "version": "0.2.1",
+  "authors": [
+    "Mitch Anderson <mitcha@slalom.com>"
+  ],
+  "description": "Simple angular drag and drop. Nothing special -- it just works.",
+  "main": "dist/dropzone-min.js",
+  "keywords": [
+    "angular",
+    "ui",
+    "drag-and-drop",
+    "drag-n-drop",
+    "dragging"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

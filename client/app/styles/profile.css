@@ -103,13 +103,13 @@
     max-height:100%;
 }
 
-.recipeTag {
-    background-color: #d6ebff;
-    padding: 3px 8px;
-    margin: 3px;
-    cursor: pointer;
-    line-height: 27px;
-}
+/*.recipeTag {*/
+    /*background-color: #d6ebff;*/
+    /*padding: 3px 8px;*/
+    /*margin: 3px;*/
+    /*cursor: pointer;*/
+    /*line-height: 27px;*/
+/*}*/
 
 .test-color {
     background-color: #204d74;
@@ -131,7 +131,7 @@
 
 
 
-#recipePage article {
+#recipePage article, #newRecipe article {
     margin: 10px;
     padding: 10px;
     background-color: #F7F7F7;
