@@ -1,0 +1,35 @@
+<div class="container slider col-md-12" style="height: 100%">
+    <div ng-repeat="entry in steps" class="slide slide-animation nonDraggableImage"
+         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+         ng-hide="!isCurrentSlideIndex($index)" style="overflow: auto;position: relative !important;">
+
+        <div class="col-md-4">
+            <article class="row test-color sideTitle">
+                <div class="col-md-3 logoText">
+                    <h4> STEP </h4>
+                </div>
+                <div class="col-md-9">
+                    <h3> {{ entry.step_title }} </h3>
+                </div>
+            </article>
+            <article class="article-list">
+                <header class="row text-center">
+                    <h3> DESCRIPTIONS </h3>
+                </header>
+                <section class="row" style="padding: 10px 40px">
+                    {{ entry.description }}
+                </section>
+            </article>
+        </div>
+
+        <div class="col-md-8" ng-if="entry.visual_type=='vid'">
+            <youtube-video video-url="entry.visual_src"></youtube-video>
+        </div>
+        <div class="col-md-8" ng-if="entry.visual_type=='pic'">
+            <img ng-src="{{entry.visual_src}}" alt="{{entry.step_title}}">
+        </div>
+    </div>
+    <button class="arrow prev" ng-click="nextSlide()"></button>
+    <button class="arrow next" ng-click="prevSlide()"></button>
+    <p style="clear: both"></p>
+</div>

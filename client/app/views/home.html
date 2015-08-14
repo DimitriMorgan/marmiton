@@ -2,7 +2,7 @@
     <figure class="widePic" ng-controller="SearchCtrl">
         <section class="searchSection" >
             <h2> FIND YOUR NEXT MEAL ! </h2>
-            <form name="search-moment-form" action="/tools/searchresults" method="get">
+            <form>
                 <fieldset>
                     <div class="container">
                         <input type="text" name="search">
@@ -26,26 +26,26 @@
 
     <div class="article-container col-md-12">
 
-
         <div class="col-md-3" ng-repeat="recipe in recipes">
             <article>
-                <figure>
-                    <img ng-src="{{recipe.picURL}}" alt="{{recipe.name}}">
-                </figure>
-                <section>
-                    <div class="article-title">
-                        <a href="#/recipe/{{recipe.id}}">
+                <a href="#/recipe/{{recipe.id}}">
+                <!--<a href="#/sliderPage">-->
+                    <figure>
+                        <img ng-src="{{recipe.picURL}}" alt="{{recipe.name}}">
+                    </figure>
+                    <section>
+                        <div class="article-title">
                             {{recipe.name}}
-                        </a>
-                    </div>
-                    <hr />
-                    <div class="article-tags">
-                        {{recipe.tags}}
-                    </div>
-                    <div class="article-description">
-                        {{recipe.description}}
-                    </div>
-                </section>
+                        </div>
+                        <hr />
+                        <div class="article-tags">
+                            {{recipe.tags}}
+                        </div>
+                        <div class="article-description">
+                            {{recipe.description}}
+                        </div>
+                    </section>
+                </a>
             </article>
         </div>
 
