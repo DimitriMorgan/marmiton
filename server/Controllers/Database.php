@@ -11,7 +11,7 @@ class Database
     /**
      * Database connection
      *
-     * @var PDO
+     * @var \PDO
      */
     protected $connection;
 
@@ -20,13 +20,13 @@ class Database
      */
     public function __construct()
     {
-        $this->connection = new PDO('mysql:host=localhost;dbname=luto', 'root', '');
+        $this->connection = new \PDO('mysql:host=localhost;dbname=luto', 'root', '');
     }
 
     /**
      * Get Connection
      *
-     * @return PDO
+     * @return \PDO
      */
     public function getConnection()
     {
