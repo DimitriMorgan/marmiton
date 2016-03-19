@@ -27,12 +27,12 @@ class Api
     protected function parsingRequest()
     {
         try {
-            if (empty($_POST)) {
+            if (empty($_GET)) {
                 throw new \Exception('No arguments');
             }
 
-            if (!empty($_POST['recipe'])) {
-                $this->recipeCall($_POST);
+            if (!empty($_GET['recipe'])) {
+                $this->recipeCall($_GET);
             }
 
 
