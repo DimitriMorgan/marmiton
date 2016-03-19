@@ -2,7 +2,7 @@
 namespace Server\Entities;
 
 use Server\Controllers\Request;
-include '..\Controllers\Request.php';
+include 'Request.php';
 
 /**
  * Class Recipe
@@ -14,7 +14,7 @@ class Recipe extends Request
     /**
      * Database path relative to recipe
      */
-    const TABLE = 'recipe/';
+    const TABLE = 'recipe';
 
     /**
      * @var string
@@ -44,12 +44,12 @@ class Recipe extends Request
     /**
      * @var string
      */
-    protected $createdAt;
+    protected $created_at;
 
     /**
      * @var string
      */
-    protected $updatedAt;
+    protected $updated_at;
 
     /**
      * Request from front
@@ -59,8 +59,25 @@ class Recipe extends Request
     protected $request;
 
     protected $mapping = array(
-        '' => ''
+        'author' => 'author',
+        'mail' => 'mail',
+        'title' => 'title',
+        'dish_type' => 'dishType',
+        'tags' => 'tags',
+        'created_at' => 'createdAt',
+        'updated_at' => 'updatedAt'
     );
+
+    /**
+     * Constructor
+     *
+     * @param $request
+     */
+    public function __construct($request)
+    {
+        $this->request = $request;
+        return parent::parseRequest('recipe', $this);
+    }
 
     /**
      * @param string $author
@@ -81,31 +98,31 @@ class Recipe extends Request
     /**
      * @param string $createdAt
      */
-    public function setCreatedAt($createdAt)
+    public function setCreated_at($createdAt)
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $createdAt;
     }
 
     /**
      * @return string
      */
-    public function getCreatedAt()
+    public function getCreated_at()
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
-     * @param string $dish_type
+     * @param string $dishType
      */
-    public function setDishType($dish_type)
+    public function setDish_type($dishType)
     {
-        $this->dish_type = $dish_type;
+        $this->dish_type = $dishType;
     }
 
     /**
      * @return string
      */
-    public function getDishType()
+    public function getDish_type()
     {
         return $this->dish_type;
     }
@@ -131,7 +148,7 @@ class Recipe extends Request
      */
     public function setTags($tags)
     {
-        $this->tags = $tags;
+        $this->tags = explode(' ', $tags);
     }
 
     /**
@@ -161,28 +178,17 @@ class Recipe extends Request
     /**
      * @param string $updatedAt
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdated_at($updatedAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->updated_at = $updatedAt;
     }
 
     /**
      * @return string
      */
-    public function getUpdatedAt()
+    public function getUpdated_at()
     {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Constructor
-     *
-     * @param $request
-     */
-    public function __construct($request)
-    {
-        $this->request = $request;
-        parent::parseRequest();
+        return $this->updated_at;
     }
 
     /**
@@ -192,8 +198,8 @@ class Recipe extends Request
      */
     protected function loadAll()
     {
-        $url = self::BASE_URL . self::DATABASE . self::TABLE .'_search';
-        return $this->curlCall('{"query":{"match_all":{}}}', $url);
+        $url = self::BASE_URL . self::DATABASE . self::TABLE .'/_search';
+        return $this->setCollectionFromJson($this->curlCall('{"query":{"match_all":{}}}', $url), $this->mapping, $this);
     }
 
     /**
@@ -204,7 +210,19 @@ class Recipe extends Request
      */
     protected function loadById($id)
     {
-        $url = self::BASE_URL . self::DATABASE . self::TABLE . $id;
-        return $this->curlCall('', $url);
+        $url = self::BASE_URL . self::DATABASE . self::TABLE . '/' . $id;
+        return $this->setDataFromObject(json_decode($this->curlCall('', $url))->_source, $this->mapping, $this);
+    }
+
+    protected function insert()
+    {
+        $url = self::BASE_URL . self::DATABASE . self::TABLE;
+        $data = $_POST;
+        unset($data['recipe']);
+        $data['tags'] = explode(' ', $_POST['tags']);
+        $data['created_at'] = date('Y-m-d G:i:s');
+        $data['updated_at'] = date('Y-m-d G:i:s');
+
+        return $this->curlCall(json_encode($data), $url);
     }
 }

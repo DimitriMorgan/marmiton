@@ -1,5 +1,7 @@
 <?php
 namespace Server\Controllers;
+use Server\Entities\Recipe;
+
 include('Recipe.php');
 
 /**
@@ -12,7 +14,7 @@ class Api
     /**
      * Database connection
      *
-     * @var Server\Controllers\Database
+     * @var \Server\Controllers\Database
      */
     protected $connection;
 
@@ -29,7 +31,7 @@ class Api
             }
 
             if (!empty($_POST['recipe'])) {
-                $this->recipeCall($_POST['recipe']);
+                $this->recipeCall($_POST);
             }
 
 

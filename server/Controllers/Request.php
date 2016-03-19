@@ -1,8 +1,6 @@
 <?php
 namespace Server\Controllers;
 
-use Server\Entities\Recipe;
-
 abstract class Request
 {
     const BASE_URL = "http://localhost:9200/";
@@ -31,7 +29,6 @@ abstract class Request
         $result = curl_exec($ch);
         curl_close($ch);
 
-        var_dump($result);die;
         return $result;
     }
 
@@ -39,25 +36,38 @@ abstract class Request
     /**
      * Parse the request to redirect in the right action
      *
+     * @param string $className
+     * @param object $class
+     *
      * @return string
      */
-    protected function parseRequest()
+    protected function parseRequest($className, $class)
     {
-        if ($this->request == 'all') {
+        if ($this->request[$className] == 'all') {
             return $this->loadAll();
         }
-        return $this->loadById($this->request);
+        if ($this->request[$className] == 'insert') {
+            return $this->insert();
+        }
+        return $this->loadById($this->request[$class]);
     }
 
-    protected function setDataFromJson($json, $mapping, $object)
+    protected function setDataFromObject($json, $mapping, $object)
     {
-        $arrayKeys = $this->array_keys_recursive(json_decode($json));
+        foreach ($mapping as $key => $value) {
+            if (!empty($json->$key)) {
+                call_user_func(array($object, 'set' . ucfirst($value)), $json->$key);
+            }
+        }
 
-        foreach ($arrayKeys as $key) {
+        return $object;
+    }
 
-            if (key)
-            if (method_exists($object, $key)) {
-                call_user_func(array($object, 'set' . ucfirst($key)));
+    protected function setDataFromArray($array, $object)
+    {
+        foreach ($array as $key => $value) {
+            if (method_exists($object, 'set' . ucfirst($key))) {
+                call_user_func(array($object, 'set' . ucfirst($key)), $value);
             }
         }
 
@@ -76,5 +86,18 @@ abstract class Request
         }
 
         return $arrayKeys;
+    }
+
+    protected function setCollectionFromJson($json, $mapping, $object)
+    {
+        $collection = array();
+
+        $hits = json_decode($json)->hits->hits;
+
+        foreach ($hits as $element) {
+            array_push($collection, $this->setDataFromObject($element->_source, $mapping, $object));
+        }
+
+        return $collection;
     }
 }
