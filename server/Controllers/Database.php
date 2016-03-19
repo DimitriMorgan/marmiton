@@ -24,6 +24,20 @@ class Database
     }
 
     /**
+     * Select request to DB
+     *
+     * @param string $request
+     * @param string $param
+     * @return array
+     */
+    public function select($request, $param)
+    {
+        $query = $this->connection->prepare($request);
+        $query->execute($param);
+        return $query->fetchAll();
+    }
+
+    /**
      * Get Connection
      *
      * @return \PDO

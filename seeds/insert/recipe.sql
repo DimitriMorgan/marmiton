@@ -1,4 +1,4 @@
-INSERT INTO `recipe` (`recipe_id`,`author`,`author_mail`,`title`,`dish_type`,`created_at`,`updated_at`) VALUES (1,'dimitri','dim.fruit@gmail.com','tarte au citron','dessert','2013-09-22 16:19:43','2013-09-22 16:19:43');
+INSERT INTO `recipe` (`recipe_id`,`author`,`author_mail`,`title`,`dish_type`,`created_at`,`updated_at`) VALUES ('AVOP0WzXWoXHnHhtelq7','dimitri','dim.fruit@gmail.com','tarte au citron','dessert','2013-09-22 16:19:43','2013-09-22 16:19:43');
 INSERT INTO `recipe` (`recipe_id`,`author`,`author_mail`,`title`,`dish_type`,`created_at`,`updated_at`) VALUES (2,'martin','martin.pecheur@gmail.com','salade de thon','entrée','2013-09-22 16:19:43','2013-09-22 16:19:43');
 INSERT INTO `recipe` (`recipe_id`,`author`,`author_mail`,`title`,`dish_type`,`created_at`,`updated_at`) VALUES (3,'jean','jean.bon@gmail.com','Poulet à la crème et sauce soja','plat','2015-09-22 16:19:43','2015-09-22 16:19:43');
 INSERT INTO `recipe` (`recipe_id`,`author`,`author_mail`,`title`,`dish_type`,`created_at`,`updated_at`) VALUES (4,'martine','martine.lalapine@gmail.com','cheesecake maison','dessert','2015-09-22 18:19:43','2015-09-22 18:19:43');

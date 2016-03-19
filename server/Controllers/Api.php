@@ -3,6 +3,7 @@ namespace Server\Controllers;
 use Server\Entities\Recipe;
 
 include('Recipe.php');
+include('Database.php');
 
 /**
  * Class Api
@@ -42,7 +43,7 @@ class Api
 
     protected function recipeCall($request)
     {
-        new Recipe($request);
+        new Recipe($request, new Database());
     }
 
     protected function searchCall()
