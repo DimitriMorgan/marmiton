@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `comment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
   `comment_id` int(11) NOT NULL,
-  `comment_recipe_id` int(11) DEFAULT NULL,
+  `comment_recipe_id` varchar(45) DEFAULT NULL,
   `comment_message` text,
   `comment_author` varchar(45) DEFAULT NULL,
   `recipe_rating` int(11) DEFAULT NULL,
@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `picture`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `picture` (
   `picture_id` int(11) NOT NULL,
-  `picture_recipe_id` int(11) DEFAULT NULL,
+  `picture_recipe_id` varchar (45) DEFAULT NULL,
   `picture_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`picture_id`),
   KEY `index2` (`picture_recipe_id`),
@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS `recipe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recipe` (
-  `recipe_id` int(11) NOT NULL,
+  `recipe_id` varchar(45) NOT NULL,
   `author` varchar(45) DEFAULT NULL,
   `author_mail` varchar(45) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
@@ -161,7 +161,7 @@ DROP TABLE IF EXISTS `recipe_ingredient_quantity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recipe_ingredient_quantity` (
-  `recipe_id` int(11) DEFAULT NULL,
+  `recipe_id` varchar(45) DEFAULT NULL,
   `recipe_quantity_id` int(11) DEFAULT NULL,
   `recipe_ingredient_id` int(11) DEFAULT NULL,
   `recipe_ingredient_quantity_id` int(11) NOT NULL,
@@ -191,7 +191,7 @@ DROP TABLE IF EXISTS `recipe_tag`;
 CREATE TABLE `recipe_tag` (
   `recipe_tag_primary_id` int(11) NOT NULL,
   `recipe_tag_id` int(11) DEFAULT NULL,
-  `tag_recipe_id` int(11) DEFAULT NULL,
+  `tag_recipe_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`recipe_tag_primary_id`),
   KEY `index2` (`tag_recipe_id`),
   KEY `fk_recipe_tag_2_idx` (`recipe_tag_id`),
@@ -221,7 +221,7 @@ CREATE TABLE `step` (
   `step_title` varchar(255) DEFAULT NULL,
   `step_description` text,
   `step_order` int(11) DEFAULT NULL,
-  `recipe_id` int(11) DEFAULT NULL,
+  `recipe_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`step_id`),
   KEY `index2` (`recipe_id`),
   CONSTRAINT `fk_step_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE
