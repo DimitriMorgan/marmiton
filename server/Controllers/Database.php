@@ -46,4 +46,15 @@ class Database
     {
         return $this->connection;
     }
+
+    public function insert($request, $params)
+    {
+        $query = $this->connection->prepare($request);
+        $paramNumber = 1;
+        foreach ($params as $param) {
+            $query->bindParam($paramNumber, $param);
+            $paramNumber++;
+        }
+        $query->execute();
+    }
 }

@@ -19,6 +19,11 @@ class Recipe extends Request
     /**
      * @var string
      */
+    protected $id;
+
+    /**
+     * @var string
+     */
     protected $author;
 
     /**
@@ -66,6 +71,7 @@ class Recipe extends Request
     protected $databaseHelper;
 
     protected $mapping = array(
+        'id' => 'id',
         'author' => 'author',
         'mail' => 'mail',
         'title' => 'title',
@@ -86,6 +92,24 @@ class Recipe extends Request
         $this->request = $request;
         $this->databaseHelper = $databaseHelper;
         return parent::parseRequest('recipe', $this);
+    }
+
+    /**
+     * @param string $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -256,17 +280,28 @@ class Recipe extends Request
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE;
         $data = $_POST;
+
         unset($data['recipe']);
         $data['tags'] = explode(' ', $_POST['tags']);
         $data['created_at'] = date('Y-m-d G:i:s');
         $data['updated_at'] = date('Y-m-d G:i:s');
 
-
-        return $this->curlCall(json_encode($data), $url);
+        $this->insertSteps($data, $this->curlCall(json_encode($data), $url));
     }
 
-    protected function insertSteps()
+    protected function insertSteps($steps, $id)
     {
+        $i = 1;
+        while ($i < 3) {
+            $params = array(
+                $steps['step_' . $i . '_title'],
+                $steps['step_' . $i . '_description'],
+                $i,
+                $id
+            );
 
+            $this->databaseHelper->insert("INSERT INTO step ('step_title', 'step_description', 'step_order', 'recipe_id') VALUES (?, ?, ?, ?)", $params);
+            $i++;
+        }
     }
 }

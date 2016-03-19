@@ -44,6 +44,7 @@ abstract class Request
     protected function parseRequest($className, $class)
     {
         if ($this->request[$className] == 'all') {
+            var_dump($this->loadAll());die;
             return $this->loadAll();
         }
         if ($this->request[$className] == 'insert') {
@@ -95,8 +96,10 @@ abstract class Request
 
         $hits = json_decode($json)->hits->hits;
 
+        $i = 0;
         foreach ($hits as $element) {
             array_push($collection, $this->setDataFromObject($element->_source, $mapping, $object));
+            $collection[$i]->setId($element->_id);
         }
 
         return $collection;
