@@ -52,30 +52,39 @@ class Recipe extends Request
     protected $updated_at;
 
     /**
+     * @var array
+     */
+    protected $steps;
+
+    /**
      * Request from front
      *
      * @var string
      */
     protected $request;
 
+    protected $databaseHelper;
+
     protected $mapping = array(
         'author' => 'author',
         'mail' => 'mail',
         'title' => 'title',
-        'dish_type' => 'dishType',
+        'dish_type' => 'dish_Type',
         'tags' => 'tags',
-        'created_at' => 'createdAt',
-        'updated_at' => 'updatedAt'
+        'created_at' => 'created_At',
+        'updated_at' => 'updated_At'
     );
 
     /**
      * Constructor
      *
-     * @param $request
+     * @param \Server\Controllers\Request $request
+     * @param \Server\Controllers\Database $databaseHelper
      */
-    public function __construct($request)
+    public function __construct($request, $databaseHelper)
     {
         $this->request = $request;
+        $this->databaseHelper = $databaseHelper;
         return parent::parseRequest('recipe', $this);
     }
 
@@ -148,7 +157,11 @@ class Recipe extends Request
      */
     public function setTags($tags)
     {
-        $this->tags = explode(' ', $tags);
+        if (is_array($tags)) {
+            $this->tags = $tags;
+        } else {
+            $this->tags = explode(' ', $tags);
+        }
     }
 
     /**
@@ -192,6 +205,28 @@ class Recipe extends Request
     }
 
     /**
+     * Get steps
+     *
+     * @return array
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * Set steps
+     *
+     * @param array $steps
+     * @return array
+     */
+    public function setSteps($steps)
+    {
+        $this->steps = $steps;
+        return $this;
+    }
+
+    /**
      * Load all recipes
      *
      * @return string
@@ -211,7 +246,10 @@ class Recipe extends Request
     protected function loadById($id)
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE . '/' . $id;
-        return $this->setDataFromObject(json_decode($this->curlCall('', $url))->_source, $this->mapping, $this);
+        $this->setDataFromObject(json_decode($this->curlCall('', $url))->_source, $this->mapping, $this);
+        return $this->setSteps(
+            $this->databaseHelper->select('SELECT * FROM luto.step WHERE step.recipe_id = ? ORDER BY step_order', array($id))
+        );
     }
 
     protected function insert()
@@ -223,6 +261,12 @@ class Recipe extends Request
         $data['created_at'] = date('Y-m-d G:i:s');
         $data['updated_at'] = date('Y-m-d G:i:s');
 
+
         return $this->curlCall(json_encode($data), $url);
+    }
+
+    protected function insertSteps()
+    {
+
     }
 }

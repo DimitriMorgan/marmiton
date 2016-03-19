@@ -49,7 +49,8 @@ abstract class Request
         if ($this->request[$className] == 'insert') {
             return $this->insert();
         }
-        return $this->loadById($this->request[$class]);
+        var_dump($this->loadById($this->request[$className]));die;
+        return $this->loadById($this->request[$className]);
     }
 
     protected function setDataFromObject($json, $mapping, $object)
