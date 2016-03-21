@@ -50,7 +50,14 @@ abstract class Request
         if ($this->request[$className] == 'insert') {
             return $this->insert();
         }
-        var_dump($this->loadById($this->request[$className]));die;
+        if ($this->request[$className] == 'search') {
+            $search = $this->request['search'];
+            if (!empty($search)) {
+                var_dump($this->search($search));die;
+                return $this->search($search);
+            }
+            return $this->loadAll();
+        }
         return $this->loadById($this->request[$className]);
     }
 
