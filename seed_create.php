@@ -1,6 +1,10 @@
 <?php
 try {
-    $dbh = new PDO('mysql:host=localhost;dbname=luto', 'root', '');
+    $pass = '';
+    if (empty($_ENV['LUTO'])) {
+        $pass = 'titi';
+    }
+    $dbh = new PDO('mysql:host=localhost;dbname=luto', 'root', $pass);
     executeQueryFile('./seeds/insert/recipe.sql', $dbh);
     executeQueryFile('./seeds/insert/comment.sql', $dbh);
     executeQueryFile('./seeds/insert/recipe_ingredient_quantity.sql', $dbh);
