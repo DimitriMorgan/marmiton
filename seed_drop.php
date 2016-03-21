@@ -1,6 +1,10 @@
 <?php
 try {
-    $dbh = new PDO('mysql:host=localhost;dbname=luto', 'root', '');
+    $pass = '';
+    if (empty($_ENV['LUTO'])) {
+        $pass = 'titi';
+    }
+    $dbh = new PDO('mysql:host=localhost;dbname=luto', 'root', $pass);
     executeQueryFile('./seeds/rollback/drop_all.sql', $dbh);
     echo "<div>Delete complete with success</div>";
     $dbh = null;
