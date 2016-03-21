@@ -1,4 +1,4 @@
-<form method="post" action="server/Controllers/Api.php">
+<form action="server/Controllers/Api.php">
     <input name="recipe" value="insert">
     <input name="author" value="author-test">
     <input name="mail" value="mail-test">
@@ -11,5 +11,11 @@
     <input name="step_2_description" value="description etape 2">
     <input name="step_3_title" value="titre etape 3">
     <input name="step_3_description" value="description etape 3">
+    <input name="search" value="bon marché">
     <input type="submit">
+</form>
+
+<form method="GET" action="server/Controllers/Api.php">
+    <input name="recipe" value="search">
+    <input name="search" value="citron">
 </form>

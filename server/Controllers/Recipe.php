@@ -276,6 +276,14 @@ class Recipe extends Request
         );
     }
 
+    protected function search($search)
+    {
+        $search = str_replace(' ', '+', $search);
+        $url = self::BASE_URL . self::DATABASE . self::TABLE . '/_search?q=' . "'$search'";
+
+        return $this->setCollectionFromJson($this->curlCall('', $url), $this->mapping, $this);
+    }
+
     protected function insert()
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE;
