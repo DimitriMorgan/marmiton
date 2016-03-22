@@ -1,4 +1,40 @@
-<form action="server/Controllers/Api.php">
+<?php
+class BaseController
+{
+    public function __construct()
+    {
+        $this->indexAction();
+    }
+
+    public function indexAction()
+    {
+        $recipes = $this->curlCall('http://localhost/server/Controllers/Api.php?recipe=all');
+        include_once('./client/test.php');
+    }
+
+    private function curlCall($url)
+    {
+        //  Initiate curl
+        $ch = curl_init();
+
+        // Disable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return $result;
+    }
+}
+new BaseController();
+?>
+
+
+<!--<form action="server/Controllers/Api.php">
     <input name="recipe" value="insert">
     <input name="author" value="author-test">
     <input name="mail" value="mail-test">
@@ -18,4 +54,4 @@
 <form method="GET" action="server/Controllers/Api.php">
     <input name="recipe" value="search">
     <input name="search" value="citron">
-</form>
+</form>-->

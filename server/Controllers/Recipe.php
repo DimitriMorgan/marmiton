@@ -293,6 +293,8 @@ class Recipe extends Request
         $data['tags'] = explode(' ', $_POST['tags']);
         $data['created_at'] = date('Y-m-d G:i:s');
         $data['updated_at'] = date('Y-m-d G:i:s');
+        $data['notation'] = '-1';
+        $data['numberNotation'] = 0;
 
         $this->insertSteps($data, $this->curlCall(json_encode($data), $url));
     }

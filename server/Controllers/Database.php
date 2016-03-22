@@ -21,10 +21,9 @@ class Database
     public function __construct()
     {
         $pass = '';
-        if (empty($_ENV['LUTO'])) {
+        if (!empty($_ENV['LUTO'])) {
             $pass = 'titi';
         }
-
         $this->connection = new \PDO('mysql:host=localhost;dbname=luto', 'root', $pass);
     }
 
