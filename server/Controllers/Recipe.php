@@ -270,6 +270,10 @@ class Recipe extends Request
     protected function loadById($id)
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE . '/' . $id;
+        $curlCall = json_decode($this->curlCall('', $url));
+        if (!$curlCall->found) {
+            return '';
+        }
         $this->setDataFromObject(json_decode($this->curlCall('', $url))->_source, $this->mapping, $this);
         return $this->setSteps(
             $this->databaseHelper->select('SELECT * FROM luto.step WHERE step.recipe_id = ? ORDER BY step_order', array($id))

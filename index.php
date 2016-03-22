@@ -3,13 +3,36 @@ class BaseController
 {
     public function __construct()
     {
-        $this->indexAction();
+        $recipeGet = $_GET['recipe'];
+
+        if (!empty($recipeGet)) {
+            if ($recipeGet == 'insert') {
+                return $this->insertAction();
+            }
+            return $this->recipeAction($recipeGet);
+        }
+        return $this->indexAction();
     }
 
     public function indexAction()
     {
         $recipes = $this->curlCall('http://localhost/server/Controllers/Api.php?recipe=all');
-        include_once('./client/test.php');
+        include_once('./client/home.php');
+    }
+
+    public function recipeAction($id)
+    {
+        $recipe = $this->curlCall('http://localhost/server/Controllers/Api.php?recipe=' . $id);
+        if (empty($recipe)) {
+            include_once('./client/404.php');
+            return;
+        }
+        include_once('./client/recipe.php');
+    }
+
+    public function insertAction()
+    {
+        include_once('./client/insert.php');
     }
 
     private function curlCall($url)
