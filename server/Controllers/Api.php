@@ -28,6 +28,9 @@ class Api
 
     public function getParsedRequest()
     {
+        if (!empty($this->parsedRequest)) {
+            return json_encode($this->parsedRequest);
+        }
         return $this->parsedRequest;
     }
 
@@ -61,4 +64,4 @@ class Api
 }
 
 $api = new Api();
-echo(json_encode($api->getParsedRequest()));die;
+echo($api->getParsedRequest());

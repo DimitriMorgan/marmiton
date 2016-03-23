@@ -281,8 +281,8 @@ class Recipe extends Request
         if (!$curlCall->found) {
             return '';
         }
-        $this->setDataFromObject(json_decode($this->curlCall('', $url))->_source, $this->mapping, $this);
-        return $this->setSteps(
+        $recipe = $this->setDataFromObject(json_decode($this->curlCall('', $url))->_source, $this->mapping, $this);
+        return $recipe->setSteps(
             $this->databaseHelper->select('SELECT * FROM luto.step WHERE step.recipe_id = ? ORDER BY step_order', array($id))
         );
     }
@@ -299,6 +299,10 @@ class Recipe extends Request
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE;
         $data = $_POST;
+
+        if (!$this->checkForm($data)) {
+            return 'Certains champs sont invalides';
+        }
 
         unset($data['recipe']);
         $data['tags'] = explode(' ', $_POST['tags']);
@@ -324,5 +328,10 @@ class Recipe extends Request
             $this->databaseHelper->insert("INSERT INTO step ('step_title', 'step_description', 'step_order', 'recipe_id') VALUES (?, ?, ?, ?)", $params);
             $i++;
         }
+    }
+
+    private function checkForm($formData)
+    {
+
     }
 }

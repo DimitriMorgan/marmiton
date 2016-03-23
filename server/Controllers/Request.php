@@ -52,7 +52,6 @@ abstract class Request
         if ($this->request[$className] == 'search') {
             $search = $this->request['search'];
             if (!empty($search)) {
-                var_dump($this->search($search));die;
                 return $this->search($search);
             }
             return $this->loadAll();
