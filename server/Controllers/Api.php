@@ -19,9 +19,16 @@ class Api
      */
     protected $connection;
 
+    protected $parsedRequest;
+
     public function __construct()
     {
-        $this->parsingRequest();
+         $this->parsedRequest = $this->parsingRequest();
+    }
+
+    public function getParsedRequest()
+    {
+        return $this->parsedRequest;
     }
 
     protected function parsingRequest()
@@ -32,7 +39,7 @@ class Api
             }
 
             if (!empty($_GET['recipe'])) {
-                $this->recipeCall($_GET);
+                return $this->recipeCall($_GET);
             }
 
 
@@ -43,7 +50,8 @@ class Api
 
     protected function recipeCall($request)
     {
-        new Recipe($request, new Database());
+        $recipe = new Recipe($request, new Database());
+        return $recipe->getParsedRequest();
     }
 
     protected function searchCall()
@@ -52,4 +60,5 @@ class Api
     }
 }
 
-new Api();
+$api = new Api();
+echo(json_encode($api->getParsedRequest()));die;

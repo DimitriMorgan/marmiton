@@ -44,7 +44,6 @@ abstract class Request
     protected function parseRequest($className, $class)
     {
         if ($this->request[$className] == 'all') {
-            var_dump($this->loadAll());die;
             return $this->loadAll();
         }
         if ($this->request[$className] == 'insert') {
@@ -63,13 +62,15 @@ abstract class Request
 
     protected function setDataFromObject($json, $mapping, $object)
     {
+        $newObject = clone($object);
+
         foreach ($mapping as $key => $value) {
             if (!empty($json->$key)) {
-                call_user_func(array($object, 'set' . ucfirst($value)), $json->$key);
+                call_user_func(array($newObject, 'set' . ucfirst($value)), $json->$key);
             }
         }
 
-        return $object;
+        return $newObject;
     }
 
     protected function setDataFromArray($array, $object)
@@ -107,6 +108,7 @@ abstract class Request
         foreach ($hits as $element) {
             array_push($collection, $this->setDataFromObject($element->_source, $mapping, $object));
             $collection[$i]->setId($element->_id);
+            $i++;
         }
 
         return $collection;

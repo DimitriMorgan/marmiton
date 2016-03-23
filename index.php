@@ -3,7 +3,7 @@ class BaseController
 {
     public function __construct()
     {
-        $recipeGet = $_GET['recipe'];
+        $recipeGet = (!empty($_GET['recipe']) ? $_GET['recipe'] : '');
 
         if (!empty($recipeGet)) {
             if ($recipeGet == 'insert') {

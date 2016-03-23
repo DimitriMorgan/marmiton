@@ -19,58 +19,60 @@ class Recipe extends Request
     /**
      * @var string
      */
-    protected $id;
+    public $id;
 
     /**
      * @var string
      */
-    protected $author;
+    public $author;
 
     /**
      * @var string
      */
-    protected $mail;
+    public $mail;
 
     /**
      * @var string
      */
-    protected $title;
+    public $title;
 
     /**
      * @var string
      */
-    protected $dish_type;
+    public $dish_type;
 
     /**
      * @var array
      */
-    protected $tags;
+    public $tags;
 
     /**
      * @var string
      */
-    protected $created_at;
+    public $created_at;
 
     /**
      * @var string
      */
-    protected $updated_at;
+    public $updated_at;
 
     /**
      * @var array
      */
-    protected $steps;
+    public $steps;
 
     /**
      * Request from front
      *
      * @var string
      */
-    protected $request;
+    public $request;
 
-    protected $databaseHelper;
+    public $databaseHelper;
 
-    protected $mapping = array(
+    public $parsedRequest;
+
+    public $mapping = array(
         'id' => 'id',
         'author' => 'author',
         'mail' => 'mail',
@@ -91,7 +93,7 @@ class Recipe extends Request
     {
         $this->request = $request;
         $this->databaseHelper = $databaseHelper;
-        return parent::parseRequest('recipe', $this);
+        $this->parsedRequest = parent::parseRequest('recipe', $this);
     }
 
     /**
@@ -250,12 +252,17 @@ class Recipe extends Request
         return $this;
     }
 
+    public function getParsedRequest()
+    {
+        return $this->parsedRequest;
+    }
+
     /**
      * Load all recipes
      *
      * @return string
      */
-    protected function loadAll()
+    public function loadAll()
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE .'/_search';
         return $this->setCollectionFromJson($this->curlCall('{"query":{"match_all":{}}}', $url), $this->mapping, $this);
@@ -267,7 +274,7 @@ class Recipe extends Request
      * @param  $id
      * @return string
      */
-    protected function loadById($id)
+    public function loadById($id)
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE . '/' . $id;
         $curlCall = json_decode($this->curlCall('', $url));
@@ -280,7 +287,7 @@ class Recipe extends Request
         );
     }
 
-    protected function search($search)
+    public function search($search)
     {
         $search = str_replace(' ', '+', $search);
         $url = self::BASE_URL . self::DATABASE . self::TABLE . '/_search?q=' . "'$search'";
@@ -288,7 +295,7 @@ class Recipe extends Request
         return $this->setCollectionFromJson($this->curlCall('', $url), $this->mapping, $this);
     }
 
-    protected function insert()
+    public function insert()
     {
         $url = self::BASE_URL . self::DATABASE . self::TABLE;
         $data = $_POST;
@@ -303,7 +310,7 @@ class Recipe extends Request
         $this->insertSteps($data, $this->curlCall(json_encode($data), $url));
     }
 
-    protected function insertSteps($steps, $id)
+    public function insertSteps($steps, $id)
     {
         $i = 1;
         while ($i < 3) {
