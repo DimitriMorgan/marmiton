@@ -7,6 +7,24 @@
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <span class="card-title">Recipe details:</span>
+
+                <div class="row">
+                    <p>category:</p>
+                    <p><?php echo $recipe->dish_type; ?></p>
+                </div>
+
+                <div class="row">
+                    <?php
+                    foreach($recipe->tags as $tag)
+                    {
+                        echo '<div class="chip">';
+                        echo $tag;
+                        echo '</div>';
+                    }
+
+                    ?>
+                </div>
+
                 <table>
                     <tbody>
                     <tr>
@@ -21,14 +39,7 @@
                         <td>mail:</td>
                         <td><?php echo $recipe->mail; ?></td>
                     </tr>
-                    <tr>
-                        <td>dish_type:</td>
-                        <td><?php echo $recipe->dish_type; ?></td>
-                    </tr>
-                    <tr>
-                        <td>tags:</td>
-                        <td><?php var_dump($recipe->tags); ?></td>
-                    </tr>
+
                     <tr>
                         <td>created_at:</td>
                         <td><?php echo $recipe->created_at; ?></td>
