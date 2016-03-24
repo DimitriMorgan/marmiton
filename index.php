@@ -33,7 +33,7 @@ class BaseController
 
     public function insertAction()
     {
-        include_once('./client/insert.php');
+        $this->loadView('insert');
     }
 
     private function curlCall($url)

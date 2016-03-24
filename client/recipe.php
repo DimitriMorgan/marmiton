@@ -7,7 +7,6 @@
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <span class="card-title">Recipe details:</span>
-
                 <table>
                     <tbody>
                     <tr>
@@ -45,14 +44,10 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="card-action">
                 <a class="waves-effect waves-light btn amber darken-3" href="http://localhost/">home</a>
             </div>
         </div>
-
-
-
-
-
     </div>
 </div>

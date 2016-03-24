@@ -23,7 +23,7 @@
             <div class="nav-wrapper grey darken-4">
                 <img src="../images/monsterChef_transparentBG.gif" class="brand-logo" />
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="amber darken-3" href="#">new recipes</a></li>
+                    <li><a class="amber darken-3" href="http://localhost?recipe=insert">new recipes</a></li>
                 </ul>
             </div>
         </nav>
