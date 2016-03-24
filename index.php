@@ -17,17 +17,18 @@ class BaseController
     public function indexAction()
     {
         $recipes = $this->curlCall('http://localhost/server/Controllers/Api.php?recipe=all');
-        include_once('./client/home.php');
+        $this->loadView('home', $recipes);
     }
 
     public function recipeAction($id)
     {
         $recipe = $this->curlCall('http://localhost/server/Controllers/Api.php?recipe=' . $id);
         if (empty($recipe)) {
-            include_once('./client/404.php');
+
+            $this->loadView('404');
             return;
         }
-        include_once('./client/recipe.php');
+        $this->loadView('recipe', $recipe);
     }
 
     public function insertAction()
@@ -51,6 +52,13 @@ class BaseController
         curl_close($ch);
 
         return $result;
+    }
+
+    private function loadView($view, $options = null)
+    {
+        include_once('./client/assets/template/header.php');
+        include_once('./client/'.$view.'.php');
+        include_once('./client/assets/template/footer.php');
     }
 }
 new BaseController();
@@ -78,3 +86,15 @@ new BaseController();
     <input name="recipe" value="search">
     <input name="search" value="citron">
 </form>-->
+
+<!--
+
+          (__)
+          (oo)
+    /------\/
+   / |    ||
+  *  /\---/\
+     ~~   ~~
+
+Luto !
+-->

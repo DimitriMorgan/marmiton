@@ -1,0 +1,18 @@
+{
+  "name": "luto-marmiton",
+  "version": "0.0.1",
+  "homepage": "git@github.com:TechGameCrew/GyverProject.git",
+  "authors": [
+    "Thibaut Gauvin     <gauvin.thibaut83@gmail.com>",
+    "Dimitri Fruit      <dim.fruit@gmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "materialize": "~0.97.5"
+  }
+}
